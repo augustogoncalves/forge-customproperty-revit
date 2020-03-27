@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8" standalone="no"?>
+<RevitAddIns>
+  <AddIn Type="DBApplication">
+    <Name>ExtractCompoundStructureLayers</Name>
+    <FullClassName>Autodesk.Forge.Sample.ExtractCompoundStructureLayers.Commands</FullClassName>
+    <Text>Revit for Design Automation</Text>
+    <Description>Revit for Design Automation</Description>
+    <VisibilityMode>AlwaysVisible</VisibilityMode>
+    <Assembly>.\ExtractCompoundStructureLayers.dll</Assembly>
+    <AddInId>4a42cddb-4d30-4da8-8e4a-1843d4f623c2</AddInId>
+    <VendorId>ADSK</VendorId>
+    <VendorDescription>Autodesk, Inc, www.autodesk.com</VendorDescription>
+  </AddIn>
+</RevitAddIns>
