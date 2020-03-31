@@ -16,11 +16,12 @@
 
 # Description
 
-This sample demonstrate Design Automation with Revit engine to extract additional information. User can select a RVT file hosted on BIM 360 Document Manager (or A360) and view using the Forge Viewer. 
+This sample demonstrates using the Forge Design Automation for Revit API to extract additional information from a model.
+The user can select a RVT file hosted on BIM 360 Document Manager or A360 and view it using the Forge Viewer. 
 
-Once the file is loaded, in the background, a Design Automation workitem will run a .NET plugin to extract Compound Layer Structure information from the file. When ready, the information will be visible on the property panel. 
+Once the file has been loaded, a Design Automation workitem will run a .NET plugin in the background to extract Compound Layer Structure information from the file. When ready, the information will be visible in the property panel. 
 
-This sample is based on the [Learn Forge](http://learnforge.autodesk.io) tutorials (`View hubs` section).
+This sample is based on the [Learn Forge](http://learnforge.autodesk.io) tutorials in the section *List hubs &amp; projects*.
 
 # Thumbnail
 
@@ -32,15 +33,21 @@ This sample is based on the [Learn Forge](http://learnforge.autodesk.io) tutoria
 
 1. **Forge Account**: Learn how to create a Forge Account, activate subscription and create an app at [this tutorial](http://learnforge.autodesk.io/#/account/). 
 2. **Visual Studio**: Either Community (Windows) or Code (Windows, MacOS). 
-3. **.NET Core** basic knowledge with C#
-4. **ngrok**: Routing tool, [download here](https://ngrok.com/)
+3. **.NET Core**: basic knowledge of C#.
+4. **ngrok**: Routing tool, [download here](https://ngrok.com/).
 7. **Revit** 2020: required to compile changes into the plugin. Windows only.
 
-For using this sample, you need an Autodesk developer credentials. Visit the [Forge Developer Portal](https://developer.autodesk.com), sign up for an account, then [create an app](https://developer.autodesk.com/myapps/create) that uses Data Management and Model Derivative APIs. For this new app, use `http://localhost:3000/api/forge/callback/oauth` as Callback URL, although is not used on 2-legged flow. Finally take note of the **Client ID** and **Client Secret**.
+Use of this sample requires Autodesk developer credentials.
+Visit the [Forge Developer Portal](https://developer.autodesk.com), sign up for an account
+and [create an app](https://developer.autodesk.com/myapps/create) that uses Data Management and Model Derivative APIs.
+For this new app, use `http://localhost:3000/api/forge/callback/oauth` as Callback URL, although is not used in a 2-legged flow.
+Finally, make a note of the **Client ID** and **Client Secret**.
 
 ## Running locally
 
-Clone this project or download it. It's recommended to install [GitHub desktop](https://desktop.github.com/). To clone it via command line, use the following (**Terminal** on MacOSX/Linux, **Git Shell** on Windows):
+Clone this project or download it.
+We recommend installing [GitHub desktop](https://desktop.github.com/).
+To clone it via command line, use the following (**Terminal** on MacOSX/Linux, **Git Shell** on Windows):
 
     git clone https://github.com/augustogoncalves/forge-customproperty-revit
 
@@ -53,7 +60,7 @@ Right-click on the project, then go to **Debug**. Adjust the settings as shown b
 
 **Visual Sutdio Code** (Windows, MacOS):
 
-Open the folder, at the bottom-right, select **Yes** and **Restore**. This restores the packages (e.g. Autodesk.Forge) and creates the launch.json file. See *Tips & Tricks* for .NET Core on MacOS.
+Open the folder, at the bottom-right, select **Yes** and **Restore**. This restores the packages (e.g. Autodesk.Forge) and creates the `launch.json` file. See *Tips & Tricks* for .NET Core on MacOS.
 
 ![](readme/visual_code_restore.png)
 
@@ -78,15 +85,18 @@ At the `.vscode\launch.json`, find the env vars and add your Forge Client ID, Se
 
 **Revit plugin**
 
-A compiled version of the `Revit` plugin (.bundles) is included on the `webapp` module, under `wwwroot/bundles` folder. Any changes on these plugins will require to create a new .bundle, the **Post-build** event should create it.
+A compiled version of the `Revit` plugin (.bundles) is included on the `webapp` module in the `wwwroot/bundles` folder.
+Any changes to these plugins will require the creation of a new .bundle; the **Post-build** event should handle that.
 
 Start the app.
 
-Open `http://localhost:3000` to start the app, select a RVT file. A pop-up will indicate when the style information is ready. 
+Open `http://localhost:3000` to start the app and select a RVT file.
+A pop-up will indicate when the style information is ready. 
 
 ## Deployment
 
-To deploy this application to Heroku, the **Callback URL** for Forge must use your `.herokuapp.com` address. After clicking on the button below, at the Heroku Create New App page, set your Client ID, Secret and Callback URL for Forge.
+To deploy this application to Heroku, the **Callback URL** for Forge must use your `.herokuapp.com` address.
+After clicking on the button below on the the Heroku 'Create New App' page, set your Client ID, Secret and Callback URL for Forge.
 
 [![Deploy](https://www.herokucdn.com/deploy/button.svg)](https://heroku.com/deploy)
 
@@ -101,7 +111,7 @@ Documentation:
 
 ### Troubleshooting
 
-1. **Cannot see my BIM 360 projects**: Make sure to provision the Forge App Client ID within the BIM 360 Account, [learn more here](https://forge.autodesk.com/blog/bim-360-docs-provisioning-forge-apps). This requires the Account Admin permission.
+1. **Cannot see my BIM 360 projects**: Make sure to provision the Forge App Client ID within the BIM 360 Account; [learn more here](https://forge.autodesk.com/blog/bim-360-docs-provisioning-forge-apps). This requires the Account Admin permission.
 
 2. **error setting certificate verify locations** error: may happen on Windows, use the following: `git config --global http.sslverify "false"`
 
