@@ -114,7 +114,7 @@ namespace forgeSample.Controllers
                 foreach (KeyValuePair<string, string> x in newAppVersion.UploadParameters.FormData) request.AddParameter(x.Key, x.Value);
                 request.AddFile("file", packageZipPath);
                 request.AddHeader("Cache-Control", "no-cache");
-                await uploadClient.ExecuteTaskAsync(request);
+                await uploadClient.ExecuteAsync(request);
             }
         }
 
@@ -139,7 +139,7 @@ namespace forgeSample.Controllers
                 {
                     Id = ActivityName,
                     Appbundles = new List<string>() { AppBundleFullName },
-                    CommandLine = new List<string>() { commandLine },
+                    CommandLine = new List<string>() { $"\"{commandLine}\"" },
                     Engine = ENGINE_NAME,
                     Parameters = new Dictionary<string, Parameter>()
                     {
@@ -242,7 +242,7 @@ namespace forgeSample.Controllers
             string resultFilename = versionId.Base64Encode() + ".json";
             string callbackUrl = string.Format("{0}/api/forge/callback/designautomation/compoundStructLayer/{1}/{2}", Credentials.GetAppSetting("FORGE_WEBHOOK_URL"), connectionId, resultFilename);
 
-            await SubmitWorkitem(credentials, projectId, versionId, resultFilename, callbackUrl);
+            WorkItemStatus status = await SubmitWorkitem(credentials, projectId, versionId, resultFilename, callbackUrl);
         }
     }
 }
