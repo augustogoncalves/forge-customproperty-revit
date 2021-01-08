@@ -134,7 +134,7 @@ namespace forgeSample.Controllers
 
             if (!existActivity)
             {
-                string commandLine = string.Format(@"$(engine.path)\\revitcoreconsole.exe /i $(args[inputFile].path) /al $(appbundles[{0}].path)", AppName);
+                string commandLine = string.Format(@"$(engine.path)\\revitcoreconsole.exe /i {0}$(args[inputFile].path){0} /al {0}$(appbundles[{1}].path){0}", "\"", AppName);
                 Activity activitySpec = new Activity()
                 {
                     Id = ActivityName,
