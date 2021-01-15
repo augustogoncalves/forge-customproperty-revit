@@ -114,7 +114,7 @@ namespace forgeSample.Controllers
                 foreach (KeyValuePair<string, string> x in newAppVersion.UploadParameters.FormData) request.AddParameter(x.Key, x.Value);
                 request.AddFile("file", packageZipPath);
                 request.AddHeader("Cache-Control", "no-cache");
-                await uploadClient.ExecuteTaskAsync(request);
+                await uploadClient.ExecuteAsync(request);
             }
         }
 
@@ -134,7 +134,7 @@ namespace forgeSample.Controllers
 
             if (!existActivity)
             {
-                string commandLine = string.Format(@"$(engine.path)\\revitcoreconsole.exe /i $(args[inputFile].path) /al $(appbundles[{0}].path)", AppName);
+                string commandLine = string.Format(@"$(engine.path)\\revitcoreconsole.exe /i {0}$(args[inputFile].path){0} /al {0}$(appbundles[{1}].path){0}", "\"", AppName);
                 Activity activitySpec = new Activity()
                 {
                     Id = ActivityName,
@@ -242,7 +242,7 @@ namespace forgeSample.Controllers
             string resultFilename = versionId.Base64Encode() + ".json";
             string callbackUrl = string.Format("{0}/api/forge/callback/designautomation/compoundStructLayer/{1}/{2}", Credentials.GetAppSetting("FORGE_WEBHOOK_URL"), connectionId, resultFilename);
 
-            await SubmitWorkitem(credentials, projectId, versionId, resultFilename, callbackUrl);
+            WorkItemStatus status = await SubmitWorkitem(credentials, projectId, versionId, resultFilename, callbackUrl);
         }
     }
 }
