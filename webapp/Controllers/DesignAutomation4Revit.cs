@@ -139,7 +139,7 @@ namespace forgeSample.Controllers
                 {
                     Id = ActivityName,
                     Appbundles = new List<string>() { AppBundleFullName },
-                    CommandLine = new List<string>() { $"\"{commandLine}\"" },
+                    CommandLine = new List<string>() { commandLine },
                     Engine = ENGINE_NAME,
                     Parameters = new Dictionary<string, Parameter>()
                     {
