@@ -8,8 +8,8 @@ class CustomPropertyPanel extends Autodesk.Viewing.Extensions.ViewerPropertyPane
         super(viewer, options);
         this._data = null;
     }
-    setProperties(properties, options) {
-        Autodesk.Viewing.Extensions.ViewerPropertyPanel.prototype.setProperties.call(this, properties, options);
+    setAggregatedProperties(propertySet) {
+        Autodesk.Viewing.Extensions.ViewerPropertyPanel.prototype.setAggregatedProperties.call(this, propertySet);
 
         if (this._data !== null) {
             this.viewer.getProperties(this.propertyNodeId, (props) => {
